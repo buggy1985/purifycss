@@ -21,6 +21,27 @@ describe("find intact classes", () => {
     })
 })
 
+describe("handle invalid css", () => {
+   const content = read("invalid/invalid.js"),
+      css = read("invalid/invalid.css"),
+      result = purify(content, css, {silent: true})
+
+        console.log(result);
+
+   it("finds .single", () => {
+      expect(result.includes(".single") === true).toBe(true)
+   })
+
+   it("finds .double-class", () => {
+      expect(result.includes(".double-class") === true).toBe(true)
+   })
+
+   it("can find .triple-simple-class", () => {
+      expect(result.includes(".triple-simple-class") === true).toBe(true)
+   })
+})
+
+
 describe("callback", () => {
     const content = read("simple/simple.js"),
         css = read("simple/simple.css")

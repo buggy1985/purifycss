@@ -5,17 +5,18 @@ const RULE_TYPE = "rule"
 const MEDIA_TYPE = "media"
 
 class CssTreeWalker extends EventEmitter {
-    constructor(code, plugins) {
+    constructor(code, plugins, silent) {
         super()
         this.startingSource = code
         this.ast = null
+        this.silent = silent
         plugins.forEach(plugin => {
             plugin.initialize(this)
         })
     }
 
     beginReading() {
-        this.ast = rework(this.startingSource).use(this.readPlugin.bind(this))
+        this.ast = rework(this.startingSource, {silent: this.silent}).use(this.readPlugin.bind(this))
     }
 
     readPlugin(tree) {

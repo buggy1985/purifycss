@@ -28,6 +28,12 @@ var argv = yargs
         type: "boolean",
         default: false
     })
+    .option("s", {
+        alias: "silent",
+        description: "Fail silently on invalid css errors",
+        type: "boolean",
+        default: false
+    })
     .option("w", {
         alias: "whitelist",
         description: "List of classes that should not be removed",
@@ -54,6 +60,7 @@ var options = {
     info: argv.info,
     rejected: argv.rejected,
     output: argv.out,
+    silent: argv.silent,
     whitelist: argv.whitelist
 }
 

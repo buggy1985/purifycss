@@ -64,6 +64,8 @@ Options:
                                                       [boolean] [default: false]
   -r, --rejected   Logs the CSS rules that were removed
                                                       [boolean] [default: false]
+  -s, --silent     Fail silently on invalid css errors
+                                                      [boolean] [default: false]
   -w, --whitelist  List of classes that should not be removed
                                                            [array] [default: []]
   -h, --help       Show help                                           [boolean]
@@ -163,7 +165,10 @@ var options = {
   minify: true,
 
   // Logs out removed selectors.
-  rejected: true
+  rejected: true,
+  
+  // Fail silently on invalid css errors 
+  silent: true
 };
 
 purify(content, css, options);
@@ -239,6 +244,8 @@ purify(content, css, options, callback);
 * **`info:`** Logs info on how much CSS was removed if `true`. Default: `false`.
 
 * **`rejected:`** Logs the CSS rules that were removed if `true`. Default: `false`.
+
+* **`silent:`** Fails silently on invalid CSS errors if `true`. Default: `false`.
 
 * **`whitelist`** Array of selectors to always leave in. Ex. `['button-active', '*modal*']` this will leave any selector that includes `modal` in it and selectors that match `button-active`. (wrapping the string with *'s, leaves all selectors that include it)
 
