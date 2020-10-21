@@ -26,8 +26,6 @@ describe("handle invalid css", () => {
       css = read("invalid/invalid.css"),
       result = purify(content, css, {silent: true})
 
-        console.log(result);
-
    it("finds .single", () => {
       expect(result.includes(".single") === true).toBe(true)
    })
@@ -38,6 +36,10 @@ describe("handle invalid css", () => {
 
    it("can find .triple-simple-class", () => {
       expect(result.includes(".triple-simple-class") === true).toBe(true)
+   })
+
+   it("invalid only css should return empty css", () => {
+      expect(purify('a', 'a', {silent: true})).toBe('')
    })
 })
 
